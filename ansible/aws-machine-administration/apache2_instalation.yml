@@ -1,0 +1,16 @@
+- name: Instalacio Apache2
+  hosts: webservers
+  become: true
+  remote_user: ansible
+
+  tasks:
+    - name: Instalar el paquet httpd
+      yum:
+        name: httpd
+        state: present
+
+    - name: Arrencar el servei 
+      service:
+        name: httpd
+        state: started
+        enabled: yes

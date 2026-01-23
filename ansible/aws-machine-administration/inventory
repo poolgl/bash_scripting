@@ -1,0 +1,5 @@
+[ec2-user@ip-172-31-18-24 ansible]$ cat inventory 
+[webservers]
+172.31.23.132
+172.31.26.24
+172.31.22.203

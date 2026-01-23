@@ -1,0 +1,16 @@
+- name: create_users
+  hosts: webservers
+  become: true
+  vars_files: defaults.yml
+
+  tasks:
+    - name: Crear usuari ansible
+      user:
+        name: "{{ created_username }}"
+
+    - name: Sudo sense password
+      lineinfile:
+        path: /etc/sudoers.d/90-cloud-init-users
+        state: present
+        line: '{{ created_username }} ALL=(ALL) NOPASSWD:ALL'
+        insertafter: EOF

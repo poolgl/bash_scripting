@@ -1,0 +1,13 @@
+---
+- name: Distribucio clau pub
+  hosts: webservers
+  become: true
+  vars_files:
+    - defaults.yml
+
+  tasks:
+    - name: Afegir la clau pública
+      ansible.posix.authorized_key:
+        user: "{{ created_username }}"
+        state: present
+        key: "{{ lookup('file', '/home/ec2-user/.ssh/ansiblePGL.pub') }}"
